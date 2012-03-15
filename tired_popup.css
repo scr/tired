@@ -2,3 +2,13 @@ body {
     width: 500px;
     height: 500px;
 }
+#tireds {
+    display: table;
+}
+#tireds > div {
+    display: table-row;
+}
+#tireds > div > * {
+    display: table-cell;
+    padding: 2px;
+}

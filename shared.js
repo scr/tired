@@ -53,6 +53,20 @@ tired.indexedDB.addTime = function(cb) {
     };
 };
 
+tired.indexedDB.rmTime = function(timeStamp, cb) {
+    var db = tired.indexedDB.db;
+    var trans = db.transaction(
+	[kTiredDbName], IDBTransaction.READ_WRITE);
+    var store = trans.objectStore(kTiredDbName);
+    var request = store.delete(timeStamp)
+    request.onsuccess = function(e) {
+	tired.indexedDB.getAllTimes(cb);
+    };
+    request.onerror = function(e) {
+	console.error('Error deleting: ' + e);
+    };
+};
+
 tired.indexedDB.getAllTimes = function(cb) {
     var db = tired.indexedDB.db;
     var trans = db.transaction(
